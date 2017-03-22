@@ -2,7 +2,7 @@
 public class Board 
 {
 	private Player[][] board;
-	private int size =4;
+	public int size =9;
 	
 	public Board()
 	{
@@ -19,16 +19,22 @@ public class Board
 				board[i][j]= Player.Empty;
 			}
 		}
+		
 		board[3][3]=Player.Black;
 		board[4][4]=Player.Black;
 		board[3][4]=Player.White;
 		board[4][3]=Player.White;
+		System.out.println("sssdfs"+board[3][3]);
 		// TODO Auto-generated method stub
 		
 	}
 	public Player getPlayerWithIndex(int x, int y)
 	{
 		return board[x][y];
+	}
+	public void setValue(int x, int y, Player value)
+	{
+		board[x][y] = value;
 	}
 	
 

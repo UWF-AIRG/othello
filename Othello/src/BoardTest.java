@@ -18,7 +18,7 @@ public class BoardTest {
 	@Test
 	public void testGetPlayerWithIndex()
 	{
-		board.reset();
+		//board.reset();
 		System.out.println(board.getPlayerWithIndex(3, 4));
 	}
 

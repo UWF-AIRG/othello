@@ -8,12 +8,12 @@ public enum Player
 		char letter=' ';
 		switch(this)
 		{
-			case White:;
-			letter='W';
-			case Black:;
-			letter='B';
-			case Empty:;
-			letter='E';
+			case White:letter='W';
+			break;
+			case Black:letter='B';
+			break;
+			case Empty:letter='E';
+			break;
 			default:
 		}
 		
@@ -24,11 +24,11 @@ public enum Player
 		char letter=' ';
 		switch(this)
 		{
-			case White:;
-			letter='B';
-			case Black:;
-			letter='W';
-			default:
+		case White:letter='B';
+		break;
+		case Black:letter='W';
+		break;
+		default:
 		}
 		
 		return letter;
