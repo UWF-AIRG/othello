@@ -3,6 +3,7 @@ public class Board
 {
 	private Player[][] board;
 	public int size =9;
+	public boolean[] error= new boolean[2];
 	
 	public Board()
 	{
@@ -32,9 +33,28 @@ public class Board
 	{
 		return board[x][y];
 	}
-	public void setValue(int x, int y, Player value)
+	public boolean setValue(int x, int y, Player value)
 	{
-		board[x][y] = value;
+		boolean result=false;
+		if(board[x][y]== Player.Empty)
+		{
+//			if((x+1)>size )
+//			{
+//				
+//			}
+			board[x][y] = value;
+			result = true;
+		}
+		else
+		{
+		 result = false;
+		 error[0]= true;
+		}
+		return result;
+	}
+	public boolean getErrorIndex(int i)
+	{
+		return error[i];
 	}
 	
 
