@@ -17,6 +17,11 @@ public class TheGame
 		}
 	}
 
+	/**
+	 * Make moves.
+	 *
+	 * @param player the player
+	 */
 	private void makeMoves(Player player) 
 	{
 		boolean keepGoing= false;
@@ -25,13 +30,14 @@ public class TheGame
 
 			display.print(board);
 			int[] move = display.makeMove(player);
+			System.out.println(move[0]+"-------------"+ move[1]);
 			while(!display.isClick())
 			{
 				
 			}
 			display.setIsClick(false);
 			keepGoing = ref.validMove(player, move[0], move[1]);
-			
+			System.out.println(keepGoing);
 			if(keepGoing==true)
 			{
 				board.setValue(move[0], move[1], player);

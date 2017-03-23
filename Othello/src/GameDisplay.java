@@ -7,28 +7,25 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 import javax.swing.*;
 
 
 public class GameDisplay implements OthelloUI
 {
-	private volatile boolean isClick;
-	public Scanner in = new Scanner(System.in);
+	private volatile boolean isClick=false;
 	private volatile boolean errorMessage =false;
-	 private int MainROW=8;
-	 private int MainCOL=8;
-	   private volatile boolean buttonPressed = false;
-	   private volatile int xCordinate;
-	   private volatile int yCordinate;
-	 private JButton[][] buttons = new JButton[MainCOL][MainROW];
+	private int MainROW=8;
+	private int MainCOL=8;
+	private volatile int xCordinate;
+	private volatile int yCordinate;
+	private JButton[][] buttons = new JButton[MainCOL][MainROW];
+	private JLabel topMessage = new JLabel("Welcome");
+	private JLabel bottomMessage = new JLabel("Welcome");
 	
 	public GameDisplay()
 	{
 		buttons = new JButton[MainCOL][MainROW];
-
-	      
-	      setFrame();
+	    setFrame();
 	}
 	
 	   public void setFrame()
@@ -54,8 +51,10 @@ public class GameDisplay implements OthelloUI
 	     
 
 	      
-
-	      //panel.add(bottomMessage, BorderLayout.SOUTH);
+	      Font font = new Font("Courier", Font.BOLD, 30);
+		  bottomMessage.setFont(font);
+	      panel.add(topMessage, BorderLayout.NORTH);
+	      panel.add(bottomMessage, BorderLayout.SOUTH);
 	      panel.add(addButtonToPanel(), BorderLayout.CENTER);
 
 	      return panel;
@@ -84,7 +83,13 @@ public class GameDisplay implements OthelloUI
 		    }
 		    return null;
 		  }
-	   private Panel addButtonToPanel()
+	   
+   	/**
+   	 * Adds the button to panel.
+   	 *
+   	 * @return the panel
+   	 */
+   	private Panel addButtonToPanel()
 	   {
 	      Panel panel = new Panel();
 	      panel.setLayout(new GridLayout(MainCOL, MainROW,2,2));
@@ -151,7 +156,10 @@ public class GameDisplay implements OthelloUI
 	{
 		if(errorMessage)
 		{
-			System.out.println("Space is Ocupy");
+			bottomMessage.setText("Space is Ocupy");
+			Font font = new Font("Courier", Font.BOLD, 30);
+			bottomMessage.setFont(font);
+			
 		}
 	}
 	
@@ -159,25 +167,20 @@ public class GameDisplay implements OthelloUI
 	{
 		if(errorMessage)
 		{
-			System.out.println("Please place the piece in a close Range, stupid");
+			bottomMessage.setText("Please place the piece in a close Range, stupid");
+			Font font = new Font("Courier", Font.BOLD, 30);
+			bottomMessage.setFont(font);
 		}
 	}
 	
 	public int[] makeMove(Player player)
 	{
-		
-
-		System.out.println("Enter a value for "+ player+" player");
+		topMessage.setText("     "+ player+" player turn");
+		Font font = new Font("Courier", Font.BOLD, 50);
+		topMessage.setFont(font);
 		int[] move =  new int[]{xCordinate,yCordinate};
-//		move[0]=in.nextInt();
-//		move[1]=in.nextInt();
 		
 		return move;
-//		  public int[] getUserMove()
-//		   {
-//		      int[] temp= new int[]{xCordinate,yCordinate};
-//		      return temp;
-//		   }
 	}
 	
 }
