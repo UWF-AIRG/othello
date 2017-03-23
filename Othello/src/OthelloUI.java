@@ -2,7 +2,7 @@
 public interface OthelloUI 
 {
 	public void print(Board board);
-	public int[] makeMove();
+	public int[] makeMove(Player player);
 	
 	public void setErrorMessage(boolean b);
 	public boolean isClick();

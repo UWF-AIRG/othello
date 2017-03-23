@@ -3,10 +3,11 @@ public class TheGame
 {
 	Board board = new Board();
 	OthelloUI display = new GameDisplay();
+	RefGame ref = new RefGame(board);
 	
 	public void playGame()
 	{
-		while(true)
+		while(!ref.gameOver())
 		{
 			
 			makeMoves(Player.Black);
@@ -21,18 +22,25 @@ public class TheGame
 		boolean keepGoing= false;
 		do{
 			display.setErrorMessage(false);
-			int[] move;
+
 			display.print(board);
-			move = display.makeMove();
-			keepGoing = board.setValue(move[0], move[1], player);
+			int[] move = display.makeMove(player);
+			
+			keepGoing = ref.validMove(player, move[0], move[1]);
+			
+			if(keepGoing==true)
+			{
+				board.setValue(move[0], move[1], player);
+				ref.takeTurn(player, move[0], move[1]);
+			}
 			if(!keepGoing)
 			{
 				display.setErrorMessage(true);
-				if(board.getErrorIndex(0))
+				if(ref.getErrorIndex(0))
 				{
 					display.errorSpaceMessage();
 				}
-				else
+				else if(ref.getErrorIndex(1))
 				{
 					display.errorOutMessage();
 				}

@@ -48,11 +48,11 @@ public class GameDisplay implements OthelloUI
 			System.out.println("Please place the piece in a close Range, stupid");
 		}
 	}
-	public int[] makeMove()
+	public int[] makeMove(Player player)
 	{
 		int[] move = new int[2];
 
-		System.out.println("Enter a value ");
+		System.out.println("Enter a value for "+ player+" player");
 		
 		move[0]=in.nextInt();
 		move[1]=in.nextInt();
