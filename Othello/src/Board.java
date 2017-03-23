@@ -2,7 +2,7 @@
 public class Board 
 {
 	private Player[][] board;
-	public int size =9;
+	public int size =8;
 	
 	
 	public Board()

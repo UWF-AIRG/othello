@@ -25,7 +25,11 @@ public class TheGame
 
 			display.print(board);
 			int[] move = display.makeMove(player);
-			
+			while(!display.isClick())
+			{
+				
+			}
+			display.setIsClick(false);
 			keepGoing = ref.validMove(player, move[0], move[1]);
 			
 			if(keepGoing==true)
