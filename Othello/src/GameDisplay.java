@@ -19,7 +19,7 @@ public class GameDisplay implements OthelloUI
 	private volatile int xCordinate;
 	private volatile int yCordinate;
 	private JButton[][] buttons = new JButton[MainCOL][MainROW];
-	private JLabel topMessage = new JLabel("Welcome");
+	private JLabel topMessage = new JLabel("Welcome", SwingConstants.CENTER);	// Center align to reduce the need for spaces
 	private JLabel bottomMessage = new JLabel("Welcome");
 	
 	public GameDisplay()
@@ -52,6 +52,9 @@ public class GameDisplay implements OthelloUI
 
 	      
 	      Font font = new Font("Courier", Font.BOLD, 30);
+		   // Set font for top here, so it does not need to be set later
+		   Font topFont = new Font("Courier", Font.BOLD, 50);
+		   topMessage.setFont(topFont);
 		  bottomMessage.setFont(font);
 	      panel.add(topMessage, BorderLayout.NORTH);
 	      panel.add(bottomMessage, BorderLayout.SOUTH);
@@ -63,6 +66,7 @@ public class GameDisplay implements OthelloUI
 	   {
 	      @Override public void actionPerformed(ActionEvent e)
 	      {
+
 	         String newValue= ((JButton)e.getSource()).getText();
 	         
 	         Point p = getPressedButton(e);
@@ -175,12 +179,19 @@ public class GameDisplay implements OthelloUI
 	
 	public int[] makeMove(Player player)
 	{
-		topMessage.setText("     "+ player+" player turn");
+		setTopMessageTextWithPlayer(player);
 		Font font = new Font("Courier", Font.BOLD, 50);
 		topMessage.setFont(font);
 		int[] move =  new int[]{xCordinate,yCordinate};
 		
 		return move;
+	}
+
+	public void setTopMessageTextWithPlayer(Player player) {
+		// Implemented this method because the the players turn got out of sync with reality
+		// after implementing the double click fix. Basically removed this from makeMove()
+		// and put it here so it didn't depend on makeMove() to be called.
+		topMessage.setText(player+" player turn");
 	}
 	
 }

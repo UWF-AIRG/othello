@@ -6,6 +6,7 @@ public interface OthelloUI
 	
 	public void setErrorMessage(boolean b);
 	public boolean isClick();
+	public void setTopMessageTextWithPlayer(Player player);
 	
 	/**
 	 * Sets the checks if is click.

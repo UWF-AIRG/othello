@@ -26,15 +26,21 @@ public class TheGame
 	{
 		boolean keepGoing= false;
 		do{
-			display.setErrorMessage(false);
 
+			display.setErrorMessage(false);
+            display.setTopMessageTextWithPlayer(player);
 			display.print(board);
-			int[] move = display.makeMove(player);
-			System.out.println(move[0]+"-------------"+ move[1]);
+			//int[] move = display.makeMove(player);
+
 			while(!display.isClick())
 			{
 				
 			}
+			// My possible bug fix. This move was being called before the display was clicked.
+			// The first time it was called, the move would be 0,0, which is not a legal move
+			// when the game first starts.
+			int[] move = display.makeMove(player);
+			System.out.println(move[0]+"-------------"+ move[1]);
 			display.setIsClick(false);
 			keepGoing = ref.validMove(player, move[0], move[1]);
 			System.out.println(keepGoing);
