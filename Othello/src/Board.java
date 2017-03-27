@@ -22,6 +22,21 @@ public class Board
 		reset();
 	}
 
+	public int[] getOccupiedSpaces() {
+		int blackOccupied = 0;
+		int whiteOccupied = 0;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (board[i][j] == Player.Black)
+					blackOccupied++;
+				else if (board[i][j] == Player.White)
+					whiteOccupied++;
+			}
+		}
+
+		return new int[] {blackOccupied, whiteOccupied};
+	}
+
 	/**
 	 * Reset.
 	 */

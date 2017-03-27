@@ -30,6 +30,8 @@ public class TheGame
 			display.setErrorMessage(false);
             display.setTopMessageTextWithPlayer(player);
 			display.print(board);
+			int[] movesOnBoard = board.getOccupiedSpaces();
+			System.out.println(String.format("Black has %d pieces%sWhite has %d pieces", movesOnBoard[0], '\n', movesOnBoard[1]));
 			//int[] move = display.makeMove(player);
 
 			while(!display.isClick())
