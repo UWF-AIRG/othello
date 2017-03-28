@@ -39,7 +39,6 @@ public class Board
 		board[4][4]=Player.Black;
 		board[3][4]=Player.White;
 		board[4][3]=Player.White;
-		System.out.println("sssdfs"+board[3][3]);
 		// TODO Auto-generated method stub
 		
 	}

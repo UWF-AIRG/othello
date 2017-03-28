@@ -30,7 +30,6 @@ public class TheGame
 			display.setErrorMessage(false);
             display.setTopMessageTextWithPlayer(player);
 			display.print(board);
-			//int[] move = display.makeMove(player);
 
 			while(!display.isClick())
 			{
