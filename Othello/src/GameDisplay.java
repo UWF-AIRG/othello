@@ -121,8 +121,9 @@ public class GameDisplay implements OthelloUI
 	      }
 	      return panel;
 	   }
-	public void print(Board board)
+	public void print(Board board,int[] movesOnBoard)
 	{
+		bottomMessage.setText(String.format("Black has %d pieces%s | White has %d pieces", movesOnBoard[0], '\n', movesOnBoard[1]));
 		for ( int i=0; i<board.size; i++)
 	      {
 	         for( int j=0; j<board.size; j++)
@@ -171,9 +172,13 @@ public class GameDisplay implements OthelloUI
 	{
 		if(errorMessage)
 		{
-			bottomMessage.setText("Please place the piece in a close Range, stupid");
-			Font font = new Font("Courier", Font.BOLD, 30);
-			bottomMessage.setFont(font);
+
+			// If the thread is already running, don't create a new thread
+			if (getThreadByName("MessageReversionThread") != null)
+				return;
+			// Display move status in a thread
+			new MessageReversion("MessageReversionThread").start();
+
 		}
 	}
 	
@@ -192,6 +197,39 @@ public class GameDisplay implements OthelloUI
 		// after implementing the double click fix. Basically removed this from makeMove()
 		// and put it here so it didn't depend on makeMove() to be called.
 		topMessage.setText(player+" player turn");
+	}
+
+	public Thread getThreadByName(String threadName) {
+		for (Thread t : Thread.getAllStackTraces().keySet()) {
+			if (t.getName().equals(threadName)) return t;
+		}
+		return null;
+	}
+
+	/**
+	 * The class displays a message on the bottom, then reverts the message back.
+	 * Runs on a separate thread
+	 */
+	class MessageReversion extends Thread {
+		public MessageReversion(String message) {
+			super(message);
+		}
+
+		public void run() {
+			try
+			{
+				// Set name of thread
+				Thread.currentThread().setName("MessageReversionThread");
+				Font font = new Font("Courier", Font.BOLD, 30);
+				bottomMessage.setFont(font);
+				bottomMessage.setText("Illegal Move");
+				// Sleep for 1.5 seconds. Adjust as needed
+				sleep(1500);
+				bottomMessage.setText("Welcome");
+			} catch (InterruptedException i) {
+
+			}
+		}
 	}
 	
 }

@@ -29,7 +29,14 @@ public class TheGame
 
 			display.setErrorMessage(false);
             display.setTopMessageTextWithPlayer(player);
-			display.print(board);
+			
+//<<<<<<< HEAD
+//=======
+			int[] movesOnBoard = board.getOccupiedSpaces();
+			display.print(board,movesOnBoard);
+			
+			//int[] move = display.makeMove(player);
+//>>>>>>> branch 'master' of https://github.com/UWF-AIRG/othello.git
 
 			while(!display.isClick())
 			{
